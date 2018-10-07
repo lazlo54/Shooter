@@ -45,7 +45,12 @@ body {
 			game.load.image('starfield', 'assets/starfield.png');
 			game.load.image('ship', 'assets/ship.png');
 			game.load.image('bullet', 'assets/bullets/bullet.png');
+			
+			
+			game.load.audio('LaserBlast', 'assets/sounds/LaserBlast.mp3');
 
+			
+			
 		}
 
 		function create() {
@@ -55,6 +60,10 @@ body {
 			//  The scrolling starfield background
 			starfield = game.add.tileSprite(0, 0, 800, 600, 'starfield');
 
+			LaserBlast = game.add.audio('LaserBlast');
+			
+			
+			
 			//  Our bullet group
 			bullets = game.add.group();
 			bullets.enableBody = true;
@@ -130,6 +139,7 @@ body {
 			//  Fire bullet
 			if (player.alive && fireButton.isDown) {
 				fireBullet();
+				playFx(LaserBlast);
 			}
 
 			//  Keep the shipTrail lined up with the ship
