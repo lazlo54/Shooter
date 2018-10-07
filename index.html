@@ -47,14 +47,14 @@ body {
 			game.load.image('bullet', 'assets/bullets/bullet.png');
 			
 			
-			game.load.audio('LaserBlast', 'assets/sounds/LaserBlast.mp3');
+			this.load.audio('LaserBlast','assets/sounds/LaserBlast.mp3');
 
 			
 			
 		}
 
 		
-	var LaserBlast;	
+	
 		
 		
 		
@@ -105,7 +105,7 @@ body {
 			shipTrail.start(false, 5000, 10);
 
 			
-			game.sound.setDecodedCallback([ LaserBlast ], start, this);
+			LaserBlast = game.add.audio('LaserBlast');
 			
 		}
 
@@ -149,7 +149,7 @@ body {
 			//  Fire bullet
 			if (player.alive && fireButton.isDown) {
 				fireBullet();
-				playFx(LaserBlast);
+				LaserBlast.play();
 			}
 
 			//  Keep the shipTrail lined up with the ship
