@@ -53,6 +53,13 @@ body {
 			
 		}
 
+		
+	var LaserBlast;	
+		
+		
+		
+		
+		
 		function create() {
 			
 			game.scale.pageAlignHorizontally = true;
@@ -97,6 +104,9 @@ body {
 					Phaser.Easing.Quintic.Out);
 			shipTrail.start(false, 5000, 10);
 
+			
+			game.sound.setDecodedCallback([ LaserBlast ], start, this);
+			
 		}
 
 		function update() {
