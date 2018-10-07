@@ -45,7 +45,7 @@ body {
 			game.load.image('starfield', 'assets/starfield.png');
 			game.load.image('ship', 'assets/ship.png');
 			game.load.image('bullet', 'assets/bullets/bullet.png');
-			
+			game.load.audio('blaster','assets/sounds/LaserBlaster.mp3');
 			
 			
 
@@ -54,14 +54,14 @@ body {
 		}
 
 		
-	
+	var LaserBlaster;
 		
 		
 		
 		
 		
 		function create() {
-			
+			LaserBlaster = game.add.audio('LaserBlaster',0.8);
 			game.scale.pageAlignHorizontally = true;
 			
 			//  The scrolling starfield background
@@ -149,7 +149,7 @@ body {
 			//  Fire bullet
 			if (player.alive && fireButton.isDown) {
 				fireBullet();
-				
+				LaserBlaster.play();
 			}
 
 			//  Keep the shipTrail lined up with the ship
