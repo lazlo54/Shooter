@@ -62,7 +62,7 @@ body {
 		
 		
 		function create() {
-			LaserBlaster = game.add.audio('Laser,0.8);
+			Laser = game.add.audio('Laser,0.8);
 			game.scale.pageAlignHorizontally = true;
 			
 			//  The scrolling starfield background
@@ -150,7 +150,7 @@ body {
 			//  Fire bullet
 			if (player.alive && fireButton.isDown) {
 				fireBullet();
-				LaserBlaster.play();
+				Laser.play();
 			}
 
 			//  Keep the shipTrail lined up with the ship
