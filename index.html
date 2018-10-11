@@ -30,11 +30,11 @@ body {
 		var bullets;
 		var fireButton;
 		var bulletTimer = 0;
-		var enemy2;
+		var firstEnemy;
 		var ACCLERATION = 600;
 		var DRAG = 400;
 		var MAXSPEED = 400;
-
+		var LaserBlaster1;
 		function preload() {
 
 			//  We need this because the assets are on github pages
@@ -54,7 +54,7 @@ body {
 		}
 
 		
-	var LaserBlaster1;
+	
 		
 		
 		
@@ -107,19 +107,19 @@ body {
 			
 			
 			    //  The baddies!
-    			enemy2 = game.add.group();
-  			enemy2.enableBody = true;
-    			enemy2.physicsBodyType = Phaser.Physics.ARCADE;
-    			enemy2.createMultiple(5, 'enemy2');
-    			enemy2.setAll('anchor.x', 0.5);
-    			enemy2.setAll('anchor.y', 0.5);
-    			enemy2.setAll('scale.x', 0.5);
-    			enemy2.setAll('scale.y', 0.5);
-    			enemy2.setAll('angle', 180);
-    			enemy2.setAll('outOfBoundsKill', true);
-   			enemy2.setAll('checkWorldBounds', true);
+    			firstEnemy = game.add.group();
+  			firstEnemy.enableBody = true;
+    			firstEnemy.physicsBodyType = Phaser.Physics.ARCADE;
+    			firstEnemy.createMultiple(5, 'enemy2');
+    			firstEnemy.setAll('anchor.x', 0.5);
+    			firstEnemy.setAll('anchor.y', 0.5);
+    			firstEnemy.setAll('scale.x', 0.5);
+    			firstEnemy.setAll('scale.y', 0.5);
+    			firstEnemy.setAll('angle', 180);
+    			firstEnemy.setAll('outOfBoundsKill', true);
+   			firstEnemy.setAll('checkWorldBounds', true);
 
-   			launchEnemy2();
+   			launchfirstEnemy();
 
 			
 			
@@ -181,13 +181,13 @@ body {
 		}
 		
 		
-		function launchEnemy2() {
+		function launchfirstEnemy() {
 			
     		var MIN_ENEMY_SPACING = 300;
    		var MAX_ENEMY_SPACING = 3000;
     		var ENEMY_SPEED = 300;
 
-    		var enemy = enemy2.getFirstExists(false);
+    		var enemy = firstEnemy.getFirstExists(false);
     		if (enemy) {
         		enemy.reset(game.rnd.integerInRange(0, game.width), -20);
         		enemy.body.velocity.x = game.rnd.integerInRange(-300, 300);
@@ -196,7 +196,7 @@ body {
     		}
 
     //  Send another enemy soon
-    game.time.events.add(game.rnd.integerInRange(MIN_ENEMY_SPACING, MAX_ENEMY_SPACING), launchEnemy2);
+    game.time.events.add(game.rnd.integerInRange(MIN_ENEMY_SPACING, MAX_ENEMY_SPACING), launchfirstEnemy);
 }
 		
 		
