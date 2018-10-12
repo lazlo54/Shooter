@@ -221,7 +221,7 @@ body {
 
 		//  Check collisions
     game.physics.arcade.overlap(player, firstEnemy, shipCollide, null, this);
-
+	game.physics.arcade.overlap(firstEnemy, bullets, hitEnemy, null, this);
 
 
 
@@ -264,8 +264,23 @@ body {
 			}
 		}
         
+        //collide with bullet
+        function hitEnemy(enemy, bullet) {
+    var explosion = explosions.getFirstExists(false);
+    explosion.reset(bullet.body.x + bullet.body.halfWidth, bullet.body.y + bullet.body.halfHeight);
+    explosion.body.velocity.y = enemy.body.velocity.y;
+    explosion.alpha = 0.7;
+    explosion.play('explosion', 30, false, true);
+    enemy.kill();
+    bullet.kill()
+}
         
         
+        
+        
+        
+        
+        //collide wit hship
         function shipCollide(player, enemy) {
     var explosion = explosions.getFirstExists(false);
     explosion.reset(enemy.body.x + enemy.body.halfWidth, enemy.body.y + enemy.body.halfHeight);
