@@ -37,6 +37,9 @@ body {
 		var enemies1;
 		var explosions;
 		
+		var health = 100;
+		var score = 0;
+		
 		function preload() {
 			//  We need this because the assets are on github pages
 			//  Remove the next 2 lines if running locally
@@ -53,6 +56,10 @@ body {
 			game.load.spritesheet('explosion', '/assets/explode.png', 128, 128);
 		}
 		function create() {
+			livesText = game.add.text(408,9 ,'health : '+ health,{ 
+				font:"bold 10px Arial",
+            			fill: "#ffffff"
+			});
 			
 			game.scale.pageAlignHorizontally = true;
 			
