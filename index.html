@@ -167,7 +167,11 @@ body {
        				enemy.reset(game.width , game.rnd.integerInRange(game.height, 0));
         			enemy.body.velocity.x = -ENEMY_SPEED;
         			enemy.body.velocity.y = game.rnd.integerInRange(-300, 300);
-        			enemy.body.drag.x = 100;
+        			enemy.body.drag.y = 100;
+				
+				enemy.update = function(){
+          				enemy.angle = 180 - game.math.radToDeg(Math.atan2(enemy.body.velocity.x, enemy.body.velocity.y));
+        			}
     			}
 
     			//  Send another enemy soon
