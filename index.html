@@ -56,12 +56,6 @@ body {
 			
 		}
 		function create() {
-			Health = game.add.bitmapText(10, 10, 'spacefont');
-			Health.render = function () {
-       				Health.text = 'Health: ' + Math.max(player.health, 0);
-    			};
-			Health.render();
-			
 			game.scale.pageAlignHorizontally = true;
 			
 			//  The scrolling starfield background
@@ -128,6 +122,12 @@ body {
     			explosions.forEach( function(explosion) {
         			explosion.animations.add('explosion');
     			});
+			
+			Health = game.add.bitmapText(10, 10, 'spacefont');
+			Health.render = function () {
+       				Health.text = 'Health: ' + Math.max(player.health, 0);
+    			};
+			Health.render();
 		}
 		function update() {
 			//  Scroll the background
