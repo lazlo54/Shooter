@@ -37,9 +37,6 @@ body {
 		var enemies1;
 		var explosions;
 		
-		var health = 100;
-		var score = 0;
-		
 		function preload() {
 			//  We need this because the assets are on github pages
 			//  Remove the next 2 lines if running locally
@@ -54,12 +51,15 @@ body {
 			game.load.image('enemy2', 'assets/enemies/enemy2.png'); 
 			//loads the explosion
 			game.load.spritesheet('explosion', '/assets/explode.png', 128, 128);
+			//loads the text font
+			game.load.bitmapFont('spacefont', '/assets/spacefont/spacefont1.png', '/assets/spacefont/spacefont1.xml');
+			
 		}
 		function create() {
-			livesText = game.add.text(408,9 ,'health : '+ health,{ 
-				font:"bold 10px Arial",
-            			fill: "#ffffff"
-			});
+			Health = game.add.bitmapText(10, 10, 'spacefont');
+			Health.render = function () {
+       				Health.text = 'Health: ' + Math.max(player.health, 0);
+    			};
 			
 			game.scale.pageAlignHorizontally = true;
 			
@@ -78,6 +78,7 @@ body {
 			player = game.add.sprite(100, game.height / 2, 'ship');
 			player.anchor.setTo(0.5, 0.5);
 			game.physics.enable(player, Phaser.Physics.ARCADE);
+			player.health=100;
 			player.body.maxVelocity.setTo(MAXSPEED, MAXSPEED);
 			player.body.drag.setTo(DRAG, DRAG);
 			
