@@ -37,6 +37,8 @@ body {
 		var enemies1;
 		var explosions;
 		
+		var score=0;
+		
 		function preload() {
 			//  We need this because the assets are on github pages
 			//  Remove the next 2 lines if running locally
@@ -128,6 +130,11 @@ body {
        				Health.text = 'Health: ' + Math.max(player.health, 0);
     			};
 			Health.render();
+			Score = game.add.bitmapText(390, 10, 'spacefont','',25);
+			Score.render = function () {
+       				Score.text = 'Score: ' + score;
+    			};
+			Score.render();
 		}
 		function update() {
 			//  Scroll the background
@@ -209,6 +216,8 @@ body {
     			explosion.play('explosion', 30, false, true);
     			enemy.kill();
     			bullet.kill()
+			score=score+10;
+			Score.render();
 		}
 		
 		function launchEnemy() {
