@@ -196,7 +196,9 @@ body {
     			explosion.alpha = 0.7;
     			explosion.play('explosion', 30, false, true);
     			enemy.kill();
+			//player getting hit by the enemy
 			player.health=(player.health)-10;
+			Health.render();
 		}
 		
 		function hitEnemy(enemy, bullet) {
