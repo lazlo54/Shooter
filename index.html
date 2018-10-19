@@ -123,9 +123,9 @@ body {
         			explosion.animations.add('explosion');
     			});
 			
-			Health = game.add.bitmapText(50, 10, 'spacefont','');
+			Health = game.add.bitmapText(50, 10, 'spacefont',''+playe.health,25);
 			Health.render = function () {
-       				Health.text = ' Health: ' + Math.max(player.health, 0);
+       				Health.text = 'Health: ' + Math.max(player.health, 0);
     			};
 			Health.render();
 		}
