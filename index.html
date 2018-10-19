@@ -80,6 +80,9 @@ body {
 			player.health=100;
 			player.body.maxVelocity.setTo(MAXSPEED, MAXSPEED);
 			player.body.drag.setTo(DRAG, DRAG);
+			player.events.onKilled.add(function(){
+        			shipTrail.kill();
+    			});
 			
 			enemies1 = game.add.group();
 			enemies1.enableBody = true;
@@ -95,12 +98,13 @@ body {
     			enemies1.forEach(function(enemy){
         			addEnemyEmitterTrail(enemy);
 				enemy.body.setSize(enemy.width * 3 / 4, enemy.height * 3 / 4);
+				enemy.damageAmount = 20;
         			enemy.events.onKilled.add(function(){
             				enemy.trail.kill();
         			});
     			});
 
-    			launchEnemy();
+			game.time.events.add(1000, launchEnemy);
 			
 			//  And some controls to play the game with
 			cursors = game.input.keyboard.createCursorKeys();
@@ -188,7 +192,7 @@ body {
 				player.body.acceleration.y = 0;
 			}
 			//  Fire bullet
-			if (player.alive && fireButton.isDown) {
+			if (player.alive && (fireButton.isDown || game.input.activePointer.isDown)) {
 				fireBullet();
 			}
 			//  Keep the shipTrail lined up with the ship
@@ -198,11 +202,46 @@ body {
 			game.physics.arcade.overlap(player, enemies1, shipCollide, null, this);
 			game.physics.arcade.overlap(enemies1, bullets, hitEnemy, null, this);
 			
-			if(player.health <=0){
-				youDied.visible=true;
-			}
+			if (! player.alive && gameOver.visible === false) {
+        			youDied.visible = true;
+        			gameoverText + game.add.bitmapText(390, 400, 'spacefont','',20);
+				gameoverText.render = function () {
+       					gameoverText.text = 'click to restart or press spacebar';
+    				};
+				gameoverText.visible=true;
+				gameoeverText.render();
+        			function setResetHandlers() {
+            				//  The "click to restart" handler
+            				tapRestart = game.input.onTap.addOnce(_restart,this);
+            				spaceRestart = fireButton.onDown.addOnce(_restart,this);
+            				function _restart() {
+              					tapRestart.detach();
+              					spaceRestart.detach();
+              					restart();
+						gameoverText.visible=false;
+            				}
+	       			}
+    			}
 		}
 		function render() {
+		}
+		
+		function restart () {
+    			//  Reset the enemies
+    			enemies1.callAll('kill');
+   			game.time.events.remove(launchEnemyTimer);
+    			game.time.events.add(1000, launchEnemy);
+
+    			//  Revive the player
+    			player.revive();
+    			player.health = 100;
+    			Health.render();
+    			score = 0;
+    			Score.render();
+
+    			//  Hide the text
+    			youDied.visible = false;
+
 		}
 		
 		function shipCollide(player, enemy) {
@@ -213,7 +252,7 @@ body {
     			explosion.play('explosion', 30, false, true);
     			enemy.kill();
 			//player getting hit by the enemy
-			player.health=(player.health)-10;
+			player.damage(enemy.damageAmount);
 			Health.render();
 		}
 		
@@ -254,7 +293,7 @@ body {
     			}
 
     			//  Send another enemy soon
-    			game.time.events.add(game.rnd.integerInRange(MIN_ENEMY_SPACING, MAX_ENEMY_SPACING), launchEnemy);
+			launchEnemyTimer = game.time.events.add(game.rnd.integerInRange(MIN_ENEMY_SPACING, MAX_ENEMY_SPACING), launchEnemy);
 		}
 		
 		function fireBullet() {
