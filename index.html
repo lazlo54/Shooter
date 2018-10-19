@@ -206,7 +206,7 @@ body {
 			
 			if (! player.alive && youDied.visible === false) {
         			youDied.visible = true;
-        			gameoverText + game.add.bitmapText(390, 400, 'spacefont','',20);
+        			gameoverText = game.add.bitmapText(390, 400, 'spacefont','',20);
 				gameoverText.render = function () {
        					gameoverText.text = 'click to restart or press spacebar';
     				};
