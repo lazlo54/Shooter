@@ -219,8 +219,7 @@ body {
             				function _restart() {
               					tapRestart.detach();
               					spaceRestart.detach();
-              					restart();
-						gameoverText.visible=false;
+              					restart();						
             				}
 	       			}
     			}
@@ -229,6 +228,10 @@ body {
 		}
 		
 		function restart () {
+			//  Hide the text
+    			youDied.visible = false;
+			gameoverText.visible=false;
+			
     			//  Reset the enemies
     			enemies1.callAll('kill');
    			game.time.events.remove(launchEnemyTimer);
@@ -240,10 +243,6 @@ body {
     			Health.render();
     			score = 0;
     			Score.render();
-
-    			//  Hide the text
-    			youDied.visible = false;
-
 		}
 		
 		function shipCollide(player, enemy) {
