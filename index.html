@@ -147,6 +147,8 @@ body {
 			gameoverText.render = function () {
        				gameoverText.text = 'click to restart or press spacebar';
     			};
+			gameoverText.render();
+			gameoverText.visible=false;
 			
 // 			youDied = game.add.image(-200,0,'youdied');			
 // 			youDied.visible=false;
@@ -209,8 +211,7 @@ body {
 			game.physics.arcade.overlap(enemies1, bullets, hitEnemy, null, this);
 			
 			if (! player.alive && gameoverText.visible === false) {
-        			
-				gameoverText.render();
+				gameoverText.visible=true;
         			function setResetHandlers() {
             				//  The "click to restart" handler
             				tapRestart = game.input.onTap.addOnce(_restart,this);
