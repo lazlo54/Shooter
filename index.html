@@ -143,6 +143,11 @@ body {
     			};
 			Score.render();
 			
+			gameoverText = game.add.bitmapText(390, 400, 'spacefont','',20);
+			gameoverText.render = function () {
+       				gameoverText.text = 'click to restart or press spacebar';
+    			};
+			
 // 			youDied = game.add.image(-200,0,'youdied');			
 // 			youDied.visible=false;
 		}
@@ -204,10 +209,7 @@ body {
 			game.physics.arcade.overlap(enemies1, bullets, hitEnemy, null, this);
 			
 			if (! player.alive && gameoverText.visible === false) {
-        			gameoverText = game.add.bitmapText(390, 400, 'spacefont','',20);
-				gameoverText.render = function () {
-       					gameoverText.text = 'click to restart or press spacebar';
-    				};
+        			
 				gameoverText.render();
         			function setResetHandlers() {
             				//  The "click to restart" handler
