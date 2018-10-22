@@ -143,8 +143,8 @@ body {
     			};
 			Score.render();
 			
-			youDied = game.add.image(-200,0,'youdied');			
-			youDied.visible=false;
+// 			youDied = game.add.image(-200,0,'youdied');			
+// 			youDied.visible=false;
 		}
 		function update() {
 			//  Scroll the background
@@ -204,7 +204,6 @@ body {
 			game.physics.arcade.overlap(enemies1, bullets, hitEnemy, null, this);
 			
 			if (! player.alive && gameoverText.visible === false) {
-//         			youDied.visible = true;
         			gameoverText = game.add.bitmapText(390, 400, 'spacefont','',20);
 				gameoverText.render = function () {
        					gameoverText.text = 'click to restart or press spacebar';
@@ -311,7 +310,6 @@ body {
 		
 		function restart () {
 			//  Hide the text
-//     			youDied.visible = false;
 			gameoverText.visible=false;
 			
     			//  Reset the enemies
