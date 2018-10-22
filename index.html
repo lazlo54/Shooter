@@ -143,8 +143,7 @@ body {
     			};
 			Score.render();
 			
-			youDied = game.add.image(-200,0,'youdied');
-			youDied.scale.setTo(1,1);
+			youDied = game.add.image(-200,0,'youdied');			
 			youDied.visible=false;
 		}
 		function update() {
@@ -210,7 +209,6 @@ body {
 				gameoverText.render = function () {
        					gameoverText.text = 'click to restart or press spacebar';
     				};
-				gameoverText.visible=true;
 				gameoverText.render();
         			function setResetHandlers() {
             				//  The "click to restart" handler
@@ -226,25 +224,7 @@ body {
 		}
 		function render() {
 		}
-		
-		function restart () {
-			//  Hide the text
-    			youDied.visible = false;
-			gameoverText.visible=false;
-			
-    			//  Reset the enemies
-    			enemies1.callAll('kill');
-   			game.time.events.remove(launchEnemyTimer);
-    			game.time.events.add(1000, launchEnemy);
 
-    			//  Revive the player
-    			player.revive();
-    			player.health = 100;
-    			Health.render();
-    			score = 0;
-    			Score.render();
-		}
-		
 		function shipCollide(player, enemy) {
     			var explosion = explosions.getFirstExists(false);
    			explosion.reset(enemy.body.x + enemy.body.halfWidth, enemy.body.y + enemy.body.halfHeight);
@@ -327,6 +307,24 @@ body {
     			enemyTrail.setAlpha(0.4, 0, 800);
     			enemyTrail.setScale(0.01, 0.1, 0.01, 0.1, 1000, Phaser.Easing.Quintic.Out);
     			enemy.trail = enemyTrail;
+		}
+		
+		function restart () {
+			//  Hide the text
+    			youDied.visible = false;
+			gameoverText.visible=false;
+			
+    			//  Reset the enemies
+    			enemies1.callAll('kill');
+   			game.time.events.remove(launchEnemyTimer);
+    			game.time.events.add(1000, launchEnemy);
+
+    			//  Revive the player
+    			player.revive();
+    			player.health = 100;
+    			Health.render();
+    			score = 0;
+    			Score.render();
 		}
 	</script>
 </body>
