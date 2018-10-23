@@ -210,12 +210,12 @@ body {
 			game.physics.arcade.overlap(player, enemies1, shipCollide, null, this);
 			game.physics.arcade.overlap(enemies1, bullets, hitEnemy, null, this);
 			
-			if (! player.alive && gameoverText.visible === false) {
+			if (! player.alive && youDied.visible === false) {
 				youDied.visible=true;
+				gameoverText.visible=true;
 				setResetHandlers();				
         			function setResetHandlers() {
-            				//  The "click to restart" handler					
-					gameoverText.visible=true;
+            				//  The "click to restart" handler										
             				tapRestart = game.input.onTap.addOnce(_restart,this);
             				spaceRestart = fireButton.onDown.addOnce(_restart,this);
             				function _restart() {
