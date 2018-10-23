@@ -431,11 +431,10 @@ body {
    			game.time.events.remove(launchEnemyTimer);
     			game.time.events.add(1000, launchEnemy);
 			
+			Enemies2Bullets.callAll('kill');
 			blueEnemies.callAll('kill');
     			game.time.events.remove(launchEnemy2Timer);
 			
-			Enemies2Bullets.callAll('kill');
-
     			//  Revive the player
     			player.revive();
     			player.health = 100;
