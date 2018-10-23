@@ -211,10 +211,10 @@ body {
 			game.physics.arcade.overlap(enemies1, bullets, hitEnemy, null, this);
 			
 			if (! player.alive && gameoverText.visible === false) {
-				setResetHandlers();
+				youDied.visible=true;
+				setResetHandlers();				
         			function setResetHandlers() {
-            				//  The "click to restart" handler
-					youDied.visible=true;
+            				//  The "click to restart" handler					
 					gameoverText.visible=true;
             				tapRestart = game.input.onTap.addOnce(_restart,this);
             				spaceRestart = fireButton.onDown.addOnce(_restart,this);
