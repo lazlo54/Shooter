@@ -143,14 +143,14 @@ body {
     			};
 			Score.render();
 			
+			youDied = game.add.image(-200,0,'youdied');	
+			youDied.scale.setTo(1,1);
+			youDied.visible=false;
+			
 			gameoverText = game.add.bitmapText(390, 400, 'spacefont','',20);
 			gameoverText.render = function () {
        				gameoverText.text = 'click to restart or press spacebar';
-    			};			
-			
-			youDied = game.add.image(-200,0,'youdied');			
-			youDied.visible=false;
-			
+    			};
 			gameoverText.render();
 			gameoverText.visible=false;
 		}
