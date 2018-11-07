@@ -410,15 +410,15 @@ body {
     			enemy.trail = enemyTrail;
 		}
 		
-		function enemyHitsPlayer(player, enemyBullet) {
+		function enemyHitsPlayer(player, bullet) {
     			var explosion = explosions.getFirstExists(false);
     			explosion.reset(player.body.x + player.body.halfWidth, player.body.y + player.body.halfHeight);
     			explosion.alpha = 0.7;
     			explosion.play('explosion', 30, false, true);
-    			enemyBullet.kill();
+    			bullet.kill();
 
-    			player.damage(enemyBullet.damageAmount);
-    			Health.render()
+    			player.damage(bullet.damageAmount);
+    			Health.render();
 		}
 		
 		function restart() {
