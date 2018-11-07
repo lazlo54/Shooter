@@ -253,7 +253,7 @@ body {
 			
 			game.physics.arcade.overlap(Enemies2Bullets, player, enemyHitsPlayer, null, this);
 			
-			if (! player.alive && youDied.visible === false) {
+			if (! player.alive && gameoverText.visible === false) {
 				youDied.visible=true;
 				gameoverText.visible=true;
 				setResetHandlers();				
