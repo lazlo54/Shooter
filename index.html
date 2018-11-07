@@ -357,7 +357,7 @@ body {
               					this.angle = 180 - bank * 2;
 						
 						enemyBullet = Enemies2Bullets.getFirstExists(false);
-              					if (enemyBullet && this.alive && this.bullets && this.y > game.width / 8 && game.time.now > firingDelay + this.lastShot) {
+              					if (enemyBullet && this.alive && this.bullets && this.body.x > game.weight && this.x > game.height / 8 && game.time.now > firingDelay + this.lastShot) {
                     					this.lastShot = game.time.now;
                     					this.bullets--;
                     					enemyBullet.reset(this.x, this.y + this.height / 2);
