@@ -254,7 +254,7 @@ body {
 			game.physics.arcade.overlap(Enemies2Bullets, player, enemyHitsPlayer, null, this);
 			
 			if (! player.alive && gameoverText.visible === false) {
-				youDied.visible=true;
+// 				youDied.visible=true;
 				gameoverText.visible=true;
 				gameoverText.alpha = 0;
 				var fadeInGameOver = game.add.tween(gameoverText);
@@ -426,9 +426,16 @@ body {
 		}
 		
 		function restart() {
+			//  Revive the player
+    			player.revive();
+    			player.health = 100;
+    			Health.render();
+    			score = 0;
+    			Score.render();
+			
 			//  Hide the text
-			gameoverText.visible=false;
-			youDied.visible=false;
+			gameoverText.visible = false;
+// 			youDied.visible = false;
 			
     			//  Reset the enemies
     			enemies1.callAll('kill');
@@ -437,14 +444,7 @@ body {
 			
 			Enemies2Bullets.callAll('kill');
 			blueEnemies.callAll('kill');
-    			game.time.events.remove(launchEnemy2Timer);
-			
-    			//  Revive the player
-    			player.revive();
-    			player.health = 100;
-    			Health.render();
-    			score = 0;
-    			Score.render();
+    			game.time.events.remove(launchEnemy2Timer);			    			
 		}
 	</script>
 </body>
