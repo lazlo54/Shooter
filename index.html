@@ -352,9 +352,9 @@ body {
 			            		this.body.y = this.startingY + Math.sin((this.x) / frequency) * spread;
 			
 			             		//  Squish and rotate ship for illusion of "banking"
-			              		bank = Math.cos((this.x + 60) / frequency)
-			            		this.scale.y = 0.5 - Math.abs(bank) / 8;
-			              		this.angle = 180 - bank * 2;
+			              		bank = Math.cos((this.y + 60) / frequency)
+              					this.scale.x = 0.5 - Math.abs(bank) / 8;
+              					this.angle = 180 - bank * 2;
 						
 						enemyBullet = Enemies2Bullets.getFirstExists(false);
               					if (enemyBullet && this.alive && this.bullets && this.y > game.width / 8 && game.time.now > firingDelay + this.lastShot) {
