@@ -47,6 +47,12 @@ body {
 		var enemy1Spacing = 1000;
 		var enemy2Launched = false;
 		
+		//sounds
+		var lazerS;
+		var explosionS;
+		var themeS;		
+		var deathS;
+		
 		function preload() {
 			//  We need this because the assets are on github pages
 			//  Remove the next 2 lines if running locally
@@ -88,7 +94,7 @@ body {
 			deathS = game.add.audio('deathS');
 			
 			themeS.play();
-			themeS.loopFull(0.3);
+			themeS.loopFull();
 // 			themeS.volume(0.3);
 			
 			//  The scrolling starfield background
