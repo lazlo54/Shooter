@@ -44,6 +44,9 @@ body {
 		var launchEnemy2Timer;
 		var youDied;
 		
+		var enemy1Spacing = 1000;
+		var enemy2Launched = false;
+		
 		function preload() {
 			//  We need this because the assets are on github pages
 			//  Remove the next 2 lines if running locally
@@ -116,17 +119,17 @@ body {
 			game.time.events.add(1000, launchEnemy);
 			
 			
-			Enemies2Bullets = game.add.group();
-    			Enemies2Bullets.enableBody = true;
-    			Enemies2Bullets.physicsBodyType = Phaser.Physics.ARCADE;
-    			Enemies2Bullets.createMultiple(30, 'enemy3Bullet');
-    			Enemies2Bullets.callAll('crop', null, {x: 90, y: 0, width: 90, height: 70});
-    			Enemies2Bullets.setAll('alpha', 0.9);
-    			Enemies2Bullets.setAll('anchor.x', 0.5);
-    			Enemies2Bullets.setAll('anchor.y', 0.5);
-    			Enemies2Bullets.setAll('outOfBoundsKill', true);
-    			Enemies2Bullets.setAll('checkWorldBounds', true);
-    			Enemies2Bullets.forEach(function(enemy){
+			enemies2Bullets = game.add.group();
+    			enemies2Bullets.enableBody = true;
+    			enemies2Bullets.physicsBodyType = Phaser.Physics.ARCADE;
+    			enemies2Bullets.createMultiple(30, 'enemy3Bullet');
+    			enemies2Bullets.callAll('crop', null, {x: 90, y: 0, width: 90, height: 70});
+    			enemies2Bullets.setAll('alpha', 0.9);
+    			enemies2Bullets.setAll('anchor.x', 0.5);
+    			enemies2Bullets.setAll('anchor.y', 0.5);
+    			enemies2Bullets.setAll('outOfBoundsKill', true);
+    			enemies2Bullets.setAll('checkWorldBounds', true);
+    			enemies2Bullets.forEach(function(enemy){
        	 			enemy.body.setSize(20, 20);
     			});
 			
@@ -251,7 +254,7 @@ body {
 			game.physics.arcade.overlap(player, enemies2, shipCollide, null, this);
     			game.physics.arcade.overlap(bullets, enemies2, hitEnemy, null, this);
 			
-			game.physics.arcade.overlap(Enemies2Bullets, player, enemyHitsPlayer, null, this);
+			game.physics.arcade.overlap(enemies2Bullets, player, enemyHitsPlayer, null, this);
 			
 			if (! player.alive && gameoverText.visible === false) {
 // 				youDied.visible=true;
@@ -298,6 +301,15 @@ body {
     			bullet.kill()
 			score=score+10;
 			Score.render();
+			
+			enemy1Spacing *= 0.9;
+    			//  Blue enemies come in after a score of 1000
+    			if (!enemy2Launched && score > 1000) {
+      				enemy2Launched = true;
+      				launchEnemy2();
+      				//  Slow green enemies down now that there are other enemies
+      				enemy1Spacing *= 2;
+    			}
 		}
 		
 		function launchEnemy() {
@@ -325,7 +337,7 @@ body {
     			}
 
     			//  Send another enemy soon
-			launchEnemyTimer = game.time.events.add(game.rnd.integerInRange(MIN_ENEMY_SPACING, MAX_ENEMY_SPACING), launchEnemy);
+			launchEnemyTimer = game.time.events.add(game.rnd.integerInRange(enemy1Spacing , enemy1Spacing+1000), launchEnemy);
 		}
 		
 		function launchEnemy2() {
@@ -360,7 +372,7 @@ body {
               					this.scale.x = 0.5 - Math.abs(bank) / 8;
               					this.angle = 180 - bank * 2;
 						
-						enemyBullet = Enemies2Bullets.getFirstExists(false);
+						enemyBullet = enemies2Bullets.getFirstExists(false);
               					if (enemyBullet && this.alive && this.bullets && this.x > game.height / 8 && game.time.now > firingDelay + this.lastShot) {
                     					this.lastShot = game.time.now;
                     					this.bullets--;
@@ -442,10 +454,14 @@ body {
    			game.time.events.remove(launchEnemyTimer);
     			game.time.events.add(1000, launchEnemy);
 			
-			Enemies2Bullets.callAll('kill');
+			enemies2Bullets.callAll('kill');
 			blueEnemies.callAll('kill');
-    			game.time.events.remove(launchEnemy2Timer);			    			
+    			game.time.events.remove(launchEnemy2Timer);	
+			
+			enemy1Spacing = 1000;
+			enemy2Launched = false;
 		}
 	</script>
 </body>
 </html>
+
