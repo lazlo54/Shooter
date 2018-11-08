@@ -80,6 +80,12 @@ body {
 		function create() {
 			game.scale.pageAlignHorizontally = true;
 			
+			//adding the sounds
+			lazerS = game.add.audio('lazerS');
+			explosionS = game.add.audio('explosionS');
+			themeS = game.add.audio('themeS');
+			deathS = game.add.audio('deathS');
+			
 			//  The scrolling starfield background
 			starfield = game.add.tileSprite(0, 0, 800, 600, 'starfield');
 			//  Our bullet group
