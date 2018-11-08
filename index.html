@@ -71,10 +71,10 @@ body {
 			game.load.image('youdied', 'assets/youdied.jpg');
 			
 			//sounds
-			this.load.audio('lazerS','assets/30935__aust-paul__possiblelazer.wav');
-			this.load.audio('explosionS','assets/36847__ecodtr__laserrocket2.wav');
-			this.load.audio('themeS','assets/themeSong.wav');
-			this.load.audio('deathS','assets/deathMenu.wav');
+			game.load.audio('lazerS','assets/30935__aust-paul__possiblelazer.wav');
+			game.load.audio('explosionS','assets/36847__ecodtr__laserrocket2.wav');
+			game.load.audio('themeS','assets/themeSong.wav');
+			game.load.audio('deathS','assets/deathMenu.wav');
 			
 			
 		}
@@ -88,8 +88,8 @@ body {
 			deathS = game.add.audio('deathS');
 			
 			themeS.play();
-			themeS.loopFull(0.3);
-			themeS.volume(0.3);
+// 			themeS.loopFull(0.3);
+// 			themeS.volume(0.3);
 			
 			//  The scrolling starfield background
 			starfield = game.add.tileSprite(0, 0, 800, 600, 'starfield');
