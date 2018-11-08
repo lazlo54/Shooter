@@ -94,8 +94,8 @@ body {
 			deathS = game.add.audio('deathS');
 			
 			themeS.play();
-// 			themeS.loopFull();
-// 			themeS.volume(0.3);
+			themeS.loopFull();
+			themeS.volume(0.3);
 			
 			//  The scrolling starfield background
 			starfield = game.add.tileSprite(0, 0, 800, 600, 'starfield');
@@ -279,10 +279,10 @@ body {
 			
 			if (! player.alive && gameoverText.visible === false) {
 // 				youDied.visible=true;
-// 				themeS.pause();
-// 				deathS.play();
-// 				deathS.loopFull(0.3);
-// 				deathS.volume(0.3);
+				themeS.pause();
+				deathS.play();
+				deathS.loopFull(0.3);
+				deathS.volume(0.3);
 				
 				gameoverText.visible=true;
 				gameoverText.alpha = 0;
@@ -426,7 +426,6 @@ body {
 				//  Grab the first bullet we can from the pool
 				var bullet = bullets.getFirstExists(false);
 				if (bullet) {
-					lazerS.play();
 					//  And fire it
 					//  Make bullet come out of tip of ship with right angle
 					var bulletOffset = 20 * Math.sin(game.math
