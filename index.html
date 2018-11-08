@@ -145,8 +145,6 @@ body {
     			enemies2.forEach(function(enemy){
        				enemy.damageAmount = 40;
     			});
-
-    			game.time.events.add(1000, launchEnemy2);
 			
 			//  And some controls to play the game with
 			cursors = game.input.keyboard.createCursorKeys();
@@ -313,8 +311,6 @@ body {
 		}
 		
 		function launchEnemy() {
-    			var MIN_ENEMY_SPACING = 300;
-    			var MAX_ENEMY_SPACING = 1000;
     			var ENEMY_SPEED = 300;
 
     			var enemy = enemies1.getFirstExists(false);
@@ -347,7 +343,7 @@ body {
     			var frequency = 70;
     			var horizontalSpacing = 70;
     			var numEnemiesInWave = 5;
-    			var timeBetweenWaves = 7000;
+    			var timeBetweenWaves = 2500;
 
     			//  Launch wave
    			for (var i =0; i < numEnemiesInWave; i++) {
@@ -391,7 +387,7 @@ body {
 			}
 
     			//  Send another wave soon
-    			launchEnemy2Timer = game.time.events.add(timeBetweenWaves, launchEnemy2);
+    			launchEnemy2Timer = game.time.events.add(game.rnd.integerInRange(timeBetweenWaves, timeBetweenWaves + 4000), launchEnemy2);
 		}
 		
 		function fireBullet() {
@@ -451,12 +447,11 @@ body {
 			
     			//  Reset the enemies
     			enemies1.callAll('kill');
+			enemies2.callAll('kill');
+			enemies2Bullets.callAll('kill');
    			game.time.events.remove(launchEnemyTimer);
     			game.time.events.add(1000, launchEnemy);
-			
-			enemies2Bullets.callAll('kill');
-			blueEnemies.callAll('kill');
-    			game.time.events.remove(launchEnemy2Timer);	
+			game.time.events.remove(launchEnemy2Timer);	
 			
 			enemy1Spacing = 1000;
 			enemy2Launched = false;
