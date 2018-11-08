@@ -203,6 +203,7 @@ body {
     			};
 			gameoverText.render();
 			gameoverText.visible=false;
+			
 			themeS.play();
 			themeS.loopFull(0.3);
 			themeS.volume(0.3);
@@ -273,6 +274,9 @@ body {
 // 				youDied.visible=true;
 				themeS.pause();
 				deathS.play();
+				deathS.loopFull(0.3);
+				deathS.volume(0.3);
+				
 				gameoverText.visible=true;
 				gameoverText.alpha = 0;
 				var fadeInGameOver = game.add.tween(gameoverText);
