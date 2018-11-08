@@ -86,6 +86,10 @@ body {
 			themeS = game.add.audio('themeS');
 			deathS = game.add.audio('deathS');
 			
+			themeS.play();
+			themeS.loopFull(0.3);
+			themeS.volume(0.3);
+			
 			//  The scrolling starfield background
 			starfield = game.add.tileSprite(0, 0, 800, 600, 'starfield');
 			//  Our bullet group
@@ -203,10 +207,6 @@ body {
     			};
 			gameoverText.render();
 			gameoverText.visible=false;
-			
-			themeS.play();
-			themeS.loopFull(0.3);
-			themeS.volume(0.3);
 		}
 		function update() {
 			//  Scroll the background
