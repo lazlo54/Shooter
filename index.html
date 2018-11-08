@@ -70,6 +70,12 @@ body {
 			//loads the death png
 			game.load.image('youdied', 'assets/youdied.jpg');
 			
+			//sounds
+			this.load.audio('lazerS','assets/30935__aust-paul__possiblelazer.wav');
+			this.load.audio('explosionS','assets/36847__ecodtr__laserrocket2.wav');
+			this.load.audio('themeS','assets/themeSong.wav');
+			this.load.audio('deathS','assets/deathMenu.wav');
+			
 		}
 		function create() {
 			game.scale.pageAlignHorizontally = true;
@@ -191,6 +197,9 @@ body {
     			};
 			gameoverText.render();
 			gameoverText.visible=false;
+			themeS.play();
+			themeS.loopFull(0.3);
+			themeS.volume(0.3);
 		}
 		function update() {
 			//  Scroll the background
