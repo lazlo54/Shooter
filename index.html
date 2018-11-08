@@ -271,6 +271,8 @@ body {
 			
 			if (! player.alive && gameoverText.visible === false) {
 // 				youDied.visible=true;
+				themeS.pause();
+				deathS.play();
 				gameoverText.visible=true;
 				gameoverText.alpha = 0;
 				var fadeInGameOver = game.add.tween(gameoverText);
@@ -455,6 +457,11 @@ body {
     			Health.render();
     			score = 0;
     			Score.render();
+			
+			deathS.pause();
+			themeS.play();
+			themeS.loopFull(0.3);
+			themeS.volume(0.3);
 			
 			//  Hide the text
 			gameoverText.visible = false;
