@@ -95,7 +95,7 @@ body {
 			
 			themeS.play();
 			themeS.loopFull();
-			themeS.volume += 1;
+			themeS.volume -= 1;
 			
 			//  The scrolling starfield background
 			starfield = game.add.tileSprite(0, 0, 800, 600, 'starfield');
@@ -282,7 +282,7 @@ body {
 				themeS.pause();
 				deathS.play();
 				deathS.loopFull();
-				deathS.volume += 1;
+				deathS.volume -= 1;
 				
 				gameoverText.visible=true;
 				gameoverText.alpha = 0;
@@ -426,6 +426,7 @@ body {
 				//  Grab the first bullet we can from the pool
 				var bullet = bullets.getFirstExists(false);
 				if (bullet) {
+					lazerS.play();
 					//  And fire it
 					//  Make bullet come out of tip of ship with right angle
 					var bulletOffset = 20 * Math.sin(game.math
@@ -469,10 +470,10 @@ body {
     			score = 0;
     			Score.render();
 			
-// 			deathS.pause();
-// 			themeS.play();
-// 			themeS.loopFull(0.3);
-// 			themeS.volume(0.3);
+			deathS.pause();
+			themeS.play();
+			themeS.loopFull();
+			themeS.volume -=1;
 			
 			//  Hide the text
 			gameoverText.visible = false;
